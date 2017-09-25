@@ -4,7 +4,7 @@ define(function (require) {
 	var $ = require('jquery');
 	var fb = require('fb');
 	var $el = $('<a href="#" id="send-result">Save result</a>').appendTo('body');
-	var EMAIL = 'a.mezin@javascript.ru';
+	var EMAIL = 'm.titova@javascript.ru';
 
 
 	var email ={

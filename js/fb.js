@@ -1,6 +1,6 @@
 define(function (require) {
 	'use strict';
-	const FIREBASE_URL = 'https://js-playground.firebaseio.com/';
+	const FIREBASE_URL = 'https://js-code-playground.firebaseio.com/';
 	var firebase = require('firebase');
 
 	var myFirebaseRef = new Firebase(FIREBASE_URL);
