@@ -1,109 +1,101 @@
-define(function (require) {
-	'use strict';
 
-	var $ = require('jquery');
-	var ace = require('ace/ace');
-	var output = require('output');
-	var testSuite = require('testSuite');
-	// var tasks = require('tasks');
-	var Sandbox = require('sandbox');
-	var debounce = require('debounce');
-	var email = require('email');
-	var fb = require('fb');
+'use strict';
 
-	/**
-	 * @class App
-	 * @param {Object}  opts
-	 */
-	function App(opts) {
-		output.el = $(opts.idOutput)[0];
-		testSuite.el = $(opts.idSuite)[0];
+import $ from 'jquery';
 
-		this.key = 'app';
-		this.editor = this.initEditor(opts.idEditor);
-		this.output = output;
-		this.sandbox = new Sandbox();
+// brace is wrapper around ace to work with webpack
+import * as ace from 'brace';
+// include theme in bundle
+import 'brace/theme/monokai';
+import 'brace/mode/javascript';
 
-		this.restore();
-
-		// tasks.onselect(function (code, html, tests) {
-		// 	this.tests = tests;
-		// 	this.setCode(localStorage.getItem(this.getKey()) || code, html);
-		// }.bind(this));
-
-		email.onclick = function () {
-			email.set(null, this.getCode())
-				.then((codeRef) => {
-					let hash = codeRef.split('/').pop();
-					this.setHash(hash);
-					this.save();
-				});
-		}.bind(this);
-	}
+import output from './output';
+import Sandbox from './sandbox';
+import debounce from './debounce';
+import email from './email';
+import fb from './fb';
 
 
-	App.prototype = /** @lends App.prototype */ {
-		initEditor: function (id) {
-			var editor = ace.edit(id.substr(1));
+/**
+ * @class App
+ * @param {Object}  opts
+ */
+function App(opts) {
+	output.el = $(opts.idOutput)[0];
 
-			// editor.setTheme('ace/theme/xcode');
-			editor.setTheme("ace/theme/monokai");
-			editor.getSession().setMode('ace/mode/javascript');
+	this.key = 'app';
+	this.editor = this.initEditor(opts.idEditor);
+	this.output = output;
+	this.sandbox = new Sandbox();
 
-			editor.on('change', debounce(function () {
-				console.clear();
+	this.restore();
 
+	email.onclick = function () {
+		email.set(null, this.getCode())
+			.then((codeRef) => {
+				let hash = codeRef.split('/').pop();
+				this.setHash(hash);
 				this.save();
-				this.exec(this.getCode());
-				this.runTests();
-			}.bind(this), 500));
-
-			return editor;
-		},
-
-		setHash: function (hash) {
-			location.hash = hash;
-		},
-
-		runTests: function () {
-			this.tests && this.sandbox.eval('testSuite.run(' + this.tests + ')');
-		},
-
-		exec: function (code) {
-			this.output.clear();
-			this.sandbox.set(code, this.html);
-		},
-
-		setCode: function (code, html) {
-			this.html = html;
-
-			this.editor.setValue(code);
-			this.editor.clearSelection();
-			this.editor.moveCursorTo(0, 0);
-			this.editor.focus();
-		},
-
-		getCode: function () {
-			return this.editor.getValue();
-		},
-
-		getKey: function () {
-			return (location.hash.length ? location.hash.slice(1) : null) || this.key;
-		},
-
-		restore: function () {
-			fb.get(this.getKey()).then((data) => {
-				this.setCode(data.code || '');
-			}, () => {
-				this.setCode(localStorage.getItem(this.getKey()) || '');
 			});
-		},
-
-		save: function () {
-			localStorage.setItem(this.getKey(), this.getCode());
-		}
-	};
+	}.bind(this);
+}
 
 
-	return App;
-});
+App.prototype = /** @lends App.prototype */ {
+	initEditor: function (id) {
+		var editor = ace.edit(id.substr(1));
+
+		editor.setTheme('ace/theme/monokai');
+		editor.getSession().setMode('ace/mode/javascript');
+
+		editor.on('change', debounce(function () {
+			console.clear();
+
+			this.save();
+			this.exec(this.getCode());
+		}.bind(this), 500));
+
+		return editor;
+	},
+
+	setHash: function (hash) {
+		location.hash = hash;
+	},
+
+	exec: function (code) {
+		this.output.clear();
+		this.sandbox.set(code, this.html);
+	},
+
+	setCode: function (code, html) {
+		this.html = html;
+
+		this.editor.setValue(code);
+		this.editor.clearSelection();
+		this.editor.moveCursorTo(0, 0);
+		this.editor.focus();
+	},
+
+	getCode: function () {
+		return this.editor.getValue();
+	},
+
+	getKey: function () {
+		return (location.hash.length ? location.hash.slice(1) : null) || this.key;
+	},
+
+	restore: function () {
+		fb.get(this.getKey()).then((data) => {
+			this.setCode(data.code || '');
+		}, () => {
+			this.setCode(localStorage.getItem(this.getKey()) || '');
+		});
+	},
+
+	save: function () {
+		localStorage.setItem(this.getKey(), this.getCode());
+	}
+};
+
+
+export default App;

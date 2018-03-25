@@ -1,32 +1,31 @@
-define(function (require) {
-	'use strict';
+'use strict';
 
-	var $ = require('jquery');
-	var fb = require('fb');
-	var $el = $('<a href="#" id="send-result">Save result</a>').appendTo('body');
-	var EMAIL = 'm.titova@javascript.ru';
+import $ from 'jquery';
+import fb from './fb';
 
-
-	var email ={
-
-		set: function (subj, code) {
-			return new Promise((resolve, reject) => {
-				let background = $el.css('background');
-				resolve(fb.set(subj, code));
-				$el.slideUp( 300 ).delay( 800 ).fadeIn( 400 );
-			});
-		}
-
-	};
+var $el = $('<a href="#" id="send-result">Save result</a>').appendTo('body');
+var EMAIL = 'm.titova@javascript.ru';
 
 
-	$el.click(function (event) {
-		event.preventDefault();
-		email.onclick(email);
-	});
+var email ={
+
+	set: function (subj, code) {
+		return new Promise((resolve, reject) => {
+			let background = $el.css('background');
+			resolve(fb.set(subj, code));
+			$el.slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+		});
+	}
+
+};
 
 
-
-	// export
-	return email;
+$el.click(function (event) {
+	event.preventDefault();
+	email.onclick(email);
 });
+
+
+
+// export
+export default email;
