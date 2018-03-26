@@ -4,5 +4,4 @@ CACHE MANIFEST
 # Explicitly cached 'master entries'.
 CACHE:
 .
-index.html
 build/main.js

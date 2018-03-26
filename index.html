@@ -12,6 +12,7 @@
 	<meta name="description" content=""/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+	<script>debugger;</script>
 	<style>
 		* {
 			box-sizing: border-box;
@@ -24,6 +25,25 @@
 			padding: 0;
 			width: 100%;
 			height: 100%;
+		}
+
+		iframe {
+			display: none;
+
+			width: 100%;
+			height: 200px;
+			margin-bottom: 10px;
+			border: 1px dotted #008000;
+		}
+
+		.showHtml {
+			display: none;
+
+			right: 10px;
+			padding: 2px 5px;
+			position: absolute;
+			margin-top: -34px;
+			background-color: #cde1f1;
 		}
 
 		h1.error {
@@ -57,43 +77,30 @@
 			bottom: 0;
 			height: auto;
 		}
-			#suite .true {
-				color: #060;
-			}
-			#suite .false {
-				color: red;
-			}
 
-		#output iframe {
+		#suite .true {
+			color: #060;
+		}
+
+		#suite .false {
+			color: red;
+		}
+
+		#output .log {
+			white-space: pre;
+		}
+
+		#output pre.html {
+			margin: 0;
 			width: 100%;
 			height: 200px;
-			margin-bottom: 10px;
-			border: 1px dotted #008000;
-			display: block;
+			padding: 5px;
+			position: absolute;
+			background-color: #fff;
+			overflow: scroll;
+			border: 1px dotted #00274F;
+			font-size: 14px;
 		}
-			#output .log {
-				white-space: pre;
-			}
-
-			#output pre.html {
-				margin: 0;
-				width: 100%;
-				height: 200px;
-				padding: 5px;
-				position: absolute;
-				background-color: #fff;
-				overflow: scroll;
-				border: 1px dotted #00274F;
-				font-size: 14px;
-			}
-
-			#output .showHtml {
-				right: 10px;
-				padding: 2px 5px;
-				position: absolute;
-				margin-top: -34px;
-				background-color: #cde1f1;
-			}
 
 		#tasks {
 			left: 0;
@@ -106,22 +113,24 @@
 			font-family: Arial, Geneva, sans-serif;
 			line-height: 160%;
 		}
-			#tasks.collapse {
-				color: #fff;
-				overflow: hidden;
-				font-size: 200%;
-				font-weight: bold;
-				background-color: #c00;
-			}
-				#tasks.collapse:before {
-					content: '!';
-					display: block;
-				}
+
+		#tasks.collapse {
+			color: #fff;
+			overflow: hidden;
+			font-size: 200%;
+			font-weight: bold;
+			background-color: #c00;
+		}
+
+		#tasks.collapse:before {
+			content: '!';
+			display: block;
+		}
 
 
-				#tasks.collapse * {
-					display: none;
-				}
+		#tasks.collapse * {
+			display: none;
+		}
 
 		#send-result {
 			top: 0;
