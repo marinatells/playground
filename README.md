@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.com/marinatells/playground.svg?token=3pKBqMh8soP6NjoBeanK&branch=master)](https://travis-ci.com/marinatells/playground)
-
+[![Build Status](https://travis-ci.org/marinatells/playground.svg?token=3pKBqMh8soP6NjoBeanK&branch=master)](https://travis-ci.org/marinatells/playground)
 
 [Demo page](https://marinatells.github.io/playground/)
 
@@ -10,9 +9,9 @@ Setup your repository:
 
 1. Fork/Clone this one
 
-2. Visit [https://docs.travis-ci.com/user/deployment/pages/](GitHub Pages Deployment). Create new *GitHub token* for Travis.
+2. Visit [GitHub Pages Deployment](https://docs.travis-ci.com/user/deployment/pages/). Create new *GitHub token* for Travis.
 
-3. Visit Travis [https://travis-ci.org/username/project/settings](project settings page). Add environment variables. GITHUB_TOKEN = *key* and NODE_ENV = *production*
+3. Visit Travis [project settings page](https://travis-ci.org/username/project/settings). Add environment variables. GITHUB_TOKEN = *key* and NODE_ENV = *production*
 
 
 
