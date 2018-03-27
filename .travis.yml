@@ -7,7 +7,7 @@ cache:
   directories:
   - node_modules
 
-before_deploy: "npm run commit"
+before_deploy: "cp .gitignore-production .gitignore"
 
 deploy:
   provider: pages

@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run dev & webpack-dev-server",
     "dev": "webpack --mode=development --watch",
-    "build": "webpack --mode=production",
-    "commit": "git add build -f && git commit -m '+ build'"
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
