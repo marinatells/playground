@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "8.4.0"
+
+install:
+    npm install
+
+script:
+    npm run build
+
+cache:
+  directories:
+    - "node_modules"
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    local_dir: build
+    target_branch: gh-pages
+    github_token: $GITHUB_TOKEN
+    on:
+        branch: gh-pages
