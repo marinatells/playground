@@ -1,0 +1,7 @@
+CACHE MANIFEST
+# 2016-02-25:v1
+
+# Explicitly cached 'master entries'.
+CACHE:
+.
+build/main.js

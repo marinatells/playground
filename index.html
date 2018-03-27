@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html  manifest="cache.appcache">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<title>Playground</title>
+
+	<meta property="og:image" content="http://rubaxa.github.io/playground/st/logo.png"/>
+
+	<meta name="keywords" content="rubaxa, js, javascript, tasks, examples, brainfuck, interview, issues, fun, joy, pain, desperation, hopelessness"/>
+	<meta name="description" content=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<script>debugger;</script>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		a { cursor: pointer; text-decoration: none }
+
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		iframe {
+			display: none;
+
+			width: 100%;
+			height: 200px;
+			margin-bottom: 10px;
+			border: 1px dotted #008000;
+		}
+
+		.showHtml {
+			display: none;
+
+			right: 10px;
+			padding: 2px 5px;
+			position: absolute;
+			margin-top: -34px;
+			background-color: #cde1f1;
+		}
+
+		h1.error {
+			margin: 50px;
+			font-size: 300%;
+			text-align: center;
+		}
+
+		#editor {
+			width: 65%;
+			height: 100%;
+		}
+
+		#output, #suite {
+			margin: 0;
+			top: 0;
+			right: 0;
+			width: 45%;
+			height: 100%;
+			z-index: 10000;
+			position: absolute;
+			box-shadow: 0 0 4px rgba(0,0,0,.4);
+			background-color: #fff;
+			padding: 10px;
+			font-size: 16px;
+			font-family: Courier, "Courier New", monospace;
+		}
+
+		#suite {
+			top: auto;
+			bottom: 0;
+			height: auto;
+		}
+
+		#suite .true {
+			color: #060;
+		}
+
+		#suite .false {
+			color: red;
+		}
+
+		#output .log {
+			white-space: pre;
+		}
+
+		#output pre.html {
+			margin: 0;
+			width: 100%;
+			height: 200px;
+			padding: 5px;
+			position: absolute;
+			background-color: #fff;
+			overflow: scroll;
+			border: 1px dotted #00274F;
+			font-size: 14px;
+		}
+
+		#tasks {
+			left: 0;
+			bottom: 0;
+			padding: 10px 15px;
+			z-index: 1000;
+			position: absolute;
+			box-shadow: 0 0 4px rgba(0,0,0,.4);
+			background-color: #fff;
+			font-family: Arial, Geneva, sans-serif;
+			line-height: 160%;
+		}
+
+		#tasks.collapse {
+			color: #fff;
+			overflow: hidden;
+			font-size: 200%;
+			font-weight: bold;
+			background-color: #c00;
+		}
+
+		#tasks.collapse:before {
+			content: '!';
+			display: block;
+		}
+
+
+		#tasks.collapse * {
+			display: none;
+		}
+
+		#send-result {
+			top: 0;
+			right: 0;
+			cursor: pointer;
+			padding: 10px;
+			z-index: 100000;
+			position: absolute;
+			background: #f0f0ac;
+		}
+	</style>
+</head>
+<body>
+	<div id="editor"></div>
+	<div id="output"></div>
+	<div id="suite"></div>
+
+	<script src="build/main.js"></script>
+</body>
+</html>
